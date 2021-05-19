@@ -13,9 +13,9 @@ Title: Code_2_Downscaling_and_Bias_Correcting_CMIP6_climate_projections
 Author: Richard Fewster (gy15ref@leeds.ac.uk)
 Reference: Fewster, R.E., Morris, P.J., Ivanovic, R.F., Swindles, G.T., Peregon, A., and Smith, C. Imminent loss of climate space for Eurasian permafrost peatlands. (in press).
 Description: This program reads in CMIP6 climate netcdf files, slices them to time periods of interest, calculates monthly means, and then
-extrapolates (Dawson, 2018), downscales and bias-corrects the outputs following the method of Morris et al. (2018). Functions are included for the export of this data to
-csv and netcdf format. 
-Citations:
+extrapolates, downscales and bias-corrects the outputs following the method of Morris et al. (2018). Functions are included for the export
+of this data to csv and netcdf format. This script includes example pathfiles for the processing of ACCESS-CM2 projections.
+References:
 * Morris, P.J., Swindles, G.T., Valdes, P.J., Ivanovic, R.F., Gregoire, L.J., Smith, M.W., Tarasov, L., Haywood, A.M. and Bacon, K.L., 2018. Global peatland initiation driven by regionally asynchronous warming. Proceedings of the National Academy of Sciences, 115(19), pp.4851-4856.
 * Dawson, A. 2018. gridfill. [Online]. [Accessed June 2020]. Available from: https://github.com/ajdawson/gridfill
 Most recent update: 29/01/2021
@@ -52,30 +52,30 @@ print('Import complete')
 print('(1.2) Importing CMIP data files...')
 
 # Import CMIP land-sea mask file
-mask_file = r"G:\Climate_Data\1_CMIP_DATA\2_CMIP6\ACCESS-CM2\land\sftlf_fx_ACCESS-CM2_historical_r1i1p1f1_gn.nc"
+mask_file = r"...\ACCESS-CM2\land\sftlf_fx_ACCESS-CM2_historical_r1i1p1f1_gn.nc"
 
 # Import temperature files (e.g. for ACCESS-CM2...)
-tas_file_hist = r"G:\Climate_Data\1_CMIP_DATA\2_CMIP6\ACCESS-CM2\tmp\historical\*.nc"
+tas_file_hist = r"...\ACCESS-CM2\tmp\historical\*.nc"
 tas_file_hist = xr.open_mfdataset(tas_file_hist, combine='by_coords')
-tas_file_ssp1 = r"G:\Climate_Data\1_CMIP_DATA\2_CMIP6\ACCESS-CM2\tmp\ssp1_26\*.nc"
+tas_file_ssp1 = r"...\ACCESS-CM2\tmp\ssp1_26\*.nc"
 tas_file_ssp1 = xr.open_mfdataset(tas_file_ssp1, combine='by_coords')
-tas_file_ssp2 = r"G:\Climate_Data\1_CMIP_DATA\2_CMIP6\ACCESS-CM2\tmp\ssp2_45\*.nc"
+tas_file_ssp2 = r"...\ACCESS-CM2\tmp\ssp2_45\*.nc"
 tas_file_ssp2 = xr.open_mfdataset(tas_file_ssp2, combine='by_coords')
-tas_file_ssp3 = r"G:\Climate_Data\1_CMIP_DATA\2_CMIP6\ACCESS-CM2\tmp\ssp3_70\*.nc"
+tas_file_ssp3 = r"...\ACCESS-CM2\tmp\ssp3_70\*.nc"
 tas_file_ssp3 = xr.open_mfdataset(tas_file_ssp3, combine='by_coords')
-tas_file_ssp5 = r"G:\Climate_Data\1_CMIP_DATA\2_CMIP6\ACCESS-CM2\tmp\ssp5_85\*.nc"
+tas_file_ssp5 = r"...\ACCESS-CM2\tmp\ssp5_85\*.nc"
 tas_file_ssp5 = xr.open_mfdataset(tas_file_ssp5, combine='by_coords')
 
 # Import precipitation files (e.g. for ACCESS-CM2...)
-pre_file_hist = r"G:\Climate_Data\1_CMIP_DATA\2_CMIP6\ACCESS-CM2\pre\historical\*.nc"
+pre_file_hist = r"...\ACCESS-CM2\pre\historical\*.nc"
 pre_file_hist = xr.open_mfdataset(pre_file_hist, combine='by_coords')
-pre_file_ssp1 = r"G:\Climate_Data\1_CMIP_DATA\2_CMIP6\ACCESS-CM2\pre\ssp1_26\*.nc"
+pre_file_ssp1 = r"...\ACCESS-CM2\pre\ssp1_26\*.nc"
 pre_file_ssp1 = xr.open_mfdataset(pre_file_ssp1, combine='by_coords')
-pre_file_ssp2 = r"G:\Climate_Data\1_CMIP_DATA\2_CMIP6\ACCESS-CM2\pre\ssp2_45\*.nc"
+pre_file_ssp2 = r"...\ACCESS-CM2\pre\ssp2_45\*.nc"
 pre_file_ssp2 = xr.open_mfdataset(pre_file_ssp2, combine='by_coords')
-pre_file_ssp3 = r"G:\Climate_Data\1_CMIP_DATA\2_CMIP6\ACCESS-CM2\pre\ssp3_70\*.nc"
+pre_file_ssp3 = r"...\ACCESS-CM2\pre\ssp3_70\*.nc"
 pre_file_ssp3 = xr.open_mfdataset(pre_file_ssp3, combine='by_coords')
-pre_file_ssp5 = r"G:\Climate_Data\1_CMIP_DATA\2_CMIP6\ACCESS-CM2\pre\ssp5_85\*.nc"
+pre_file_ssp5 = r"...\ACCESS-CM2\pre\ssp5_85\*.nc"
 pre_file_ssp5 = xr.open_mfdataset(pre_file_ssp5, combine='by_coords')
 
 """
@@ -84,11 +84,11 @@ pre_file_ssp5 = xr.open_mfdataset(pre_file_ssp5, combine='by_coords')
 print('(1.3) Importing observational data files...')
 
 # Import observational temperature dataset (e.g. for CRU TS 4.02...)
-CRU_tmp_file = r"G:\Climate_Data\3_Observational_data\CRU data\CRU_TS_404\cru_ts4.04.1901.2019.tmp.dat.nc"
+CRU_tmp_file = r"...\cru_ts4.04.1901.2019.tmp.dat.nc"
 CRU_tmp_dset = xr.open_mfdataset(CRU_tmp_file, combine='by_coords')
 
 # Import observational precipitation dataset (e.g. for CRU TS 4.02...)
-CRU_pre_file =r"G:\Climate_Data\3_Observational_data\CRU data\CRU_TS_404\cru_ts4.04.1901.2019.pre.dat.nc"
+CRU_pre_file =r"...\cru_ts4.04.1901.2019.pre.dat.nc"
 CRU_pre_dset = xr.open_mfdataset(CRU_pre_file, combine='by_coords')
 
 """
@@ -97,10 +97,10 @@ CRU_pre_dset = xr.open_mfdataset(CRU_pre_file, combine='by_coords')
 print('(1.4) Setting up export directory...')
 
 # Export path for temperature files (e.g. for ACCESS-CM2...)
-tmp_DIR = r'G:\Climate_Data\1_CMIP_DATA\2_CMIP6\ACCESS-CM2\downscaled_outputs\ACCESS-CM2_1x_downscaled_monthly_tmp_'
+tmp_DIR = r'...\ACCESS-CM2_1x_downscaled_monthly_tmp_'
 
 # Export path for precipitation files (e.g. for ACCESS-CM2...)
-pre_DIR = r'G:\Climate_Data\1_CMIP_DATA\2_CMIP6\ACCESS-CM2\downscaled_outputs\ACCESS-CM2_1x_downscaled_monthly_pre_'
+pre_DIR = r'...\ACCESS-CM2_1x_downscaled_monthly_pre_'
 
 print('Step 1: Import and Setup complete')
 
