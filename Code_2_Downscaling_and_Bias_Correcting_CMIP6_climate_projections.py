@@ -11,7 +11,7 @@
 
 Title: Code_2_Downscaling_and_Bias_Correcting_CMIP6_climate_projections
 Author: Richard Fewster (gy15ref@leeds.ac.uk)
-Reference: Fewster, R.E., Morris, P.J., Ivanovic, R.F., Swindles, G.T., Peregon, A., and Smith, C. Imminent loss of climate space for Eurasian permafrost peatlands. (in press).
+Reference: Fewster, R.E., Morris, P.J., Ivanovic, R.F., Swindles, G.T., Peregon, A., and Smith, C. Imminent loss of climate space for permafrost peatlands in Europe and Western Siberia. (in review).
 Description: This program reads in CMIP6 climate netcdf files, slices them to time periods of interest, calculates monthly means, and then
 extrapolates, downscales and bias-corrects the outputs following the method of Morris et al. (2018). Functions are included for the export
 of this data to csv and netcdf format. This script includes example pathfiles for the processing of ACCESS-CM2 projections.
