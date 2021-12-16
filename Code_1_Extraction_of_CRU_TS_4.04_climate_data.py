@@ -9,7 +9,7 @@
 """
 Title: Code_1_Extraction_of_CRU_TS_4.04_climate_data
 Author: Richard Fewster (gy15ref@leeds.ac.uk)
-Reference: Fewster, R.E., Morris, P.J., Ivanovic, R.F., Swindles, G.T., Peregon, A., and Smith, C. Imminent loss of climate space for Eurasian permafrost peatlands. (in press).
+Reference: Fewster, R.E., Morris, P.J., Ivanovic, R.F., Swindles, G.T., Peregon, A., and Smith, C. Imminent loss of climate space for permafrost peatlands in Europe and Western Siberia. (in review).
 Description: This script reads in CRU observational climate netcdf files, slices them to time periods of interest, calculates monthly means, and then
 outputs the data in csv and netcdf format.
 Most Recent Update: 18/05/2021
